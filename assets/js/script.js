@@ -51,7 +51,7 @@ var createTaskEl = function(taskDataObj) {
   // create task actions (buttons and select) for task
   var taskActionsEl = createTaskActions(taskIdCounter);
   listItemEl.appendChild(taskActionsEl);
-  
+
   switch (taskDataObj.status) {
     case "to do":
       taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 0;
@@ -240,19 +240,19 @@ var saveTasks = function() {
 
 var loadTasks = function() {
   var savedTasks = localStorage.getItem("tasks");
+
   if (!savedTasks) {
     return false;
   }
-  console.log("Saved tasks found!")
 
   savedTasks = JSON.parse(savedTasks);
 
-  console.log(tasks)
-
+  // loop through savedTasks array
   for (var i = 0; i < savedTasks.length; i++) {
+    // pass each task object into the `createTaskEl()` function
     createTaskEl(savedTasks[i]);
   }
-};
+}
 
 // Create a new task
 formEl.addEventListener("submit", taskFormHandler);
